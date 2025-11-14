@@ -16,15 +16,16 @@ interface AtomPaletteProps {
 
 export const AtomPalette = ({ onAddAtom }: AtomPaletteProps) => {
   return (
-    <Card className="p-4">
+    <Card className="p-4 animate-slide-in-left shadow-md hover:shadow-lg transition-all duration-300">
       <h3 className="font-semibold mb-3">Atom Palette</h3>
       <div className="grid grid-cols-2 gap-2">
-        {atoms.map((atom) => (
+        {atoms.map((atom, idx) => (
           <Button
             key={atom.symbol}
             variant="outline"
             onClick={() => onAddAtom(atom.symbol)}
-            className="flex items-center gap-2 justify-start hover:shadow-md transition-all"
+            className="flex items-center gap-2 justify-start hover:shadow-md transition-all hover:scale-105 animate-fade-in"
+            style={{ animationDelay: `${idx * 0.1}s` }}
           >
             <div
               className={`w-6 h-6 rounded-full ${atom.color} text-white flex items-center justify-center text-xs font-bold`}

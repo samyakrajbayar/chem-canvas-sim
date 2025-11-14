@@ -34,7 +34,7 @@ export const CompoundInfo = ({ atoms }: CompoundInfoProps) => {
   );
 
   return (
-    <Card className="p-4">
+    <Card className="p-4 animate-slide-in-right shadow-md hover:shadow-lg transition-all duration-300">
       <h3 className="font-semibold mb-3">Compound Information</h3>
       
       {atoms.length === 0 ? (

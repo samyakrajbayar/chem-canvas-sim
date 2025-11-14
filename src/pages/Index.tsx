@@ -4,10 +4,13 @@ import { AtomPalette } from "@/components/AtomPalette";
 import { CompoundLibrary } from "@/components/CompoundLibrary";
 import { CompoundInfo } from "@/components/CompoundInfo";
 import { FunctionalGroups } from "@/components/FunctionalGroups";
+import { Bootloader } from "@/components/Bootloader";
+import { DarkModeToggle } from "@/components/DarkModeToggle";
 import { Atom, Bond } from "@/types/molecule";
 import { Beaker } from "lucide-react";
 
 const Index = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [atoms, setAtoms] = useState<Atom[]>([]);
   const [bonds, setBonds] = useState<Bond[]>([]);
 
@@ -47,16 +50,23 @@ const Index = () => {
     // In a real app, you'd load the actual compound structure
   };
 
+  if (isLoading) {
+    return <Bootloader onComplete={() => setIsLoading(false)} />;
+  }
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/50 transition-colors duration-300">
       <div className="container mx-auto p-6 space-y-6">
         {/* Header */}
-        <div className="text-center space-y-2">
-          <div className="flex items-center justify-center gap-3 mb-2">
-            <Beaker className="w-10 h-10 text-primary" />
+        <div className="text-center space-y-2 animate-fade-in">
+          <div className="flex items-center justify-center gap-3 mb-2 relative">
+            <Beaker className="w-10 h-10 text-primary animate-bounce-subtle" />
             <h1 className="text-4xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
               Organic Compound Simulator
             </h1>
+            <div className="absolute right-0 top-0">
+              <DarkModeToggle />
+            </div>
           </div>
           <p className="text-muted-foreground text-lg">
             Build, explore, and analyze organic molecules interactively

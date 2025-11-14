@@ -53,7 +53,7 @@ export const MoleculeBuilder = ({
   };
 
   return (
-    <Card className="p-6 h-full flex flex-col">
+    <Card className="p-6 h-full flex flex-col animate-fade-in shadow-lg hover:shadow-xl transition-all duration-300">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-bold">Molecule Builder</h2>
         <div className="flex gap-2">
@@ -126,13 +126,14 @@ export const MoleculeBuilder = ({
           })}
         </svg>
 
-        {atoms.map((atom) => (
+        {atoms.map((atom, idx) => (
           <div
             key={atom.id}
-            className="absolute cursor-pointer transition-transform hover:scale-110"
+            className="absolute cursor-pointer transition-all duration-300 hover:scale-125 animate-scale-in"
             style={{
               left: atom.x - 20,
               top: atom.y - 20,
+              animationDelay: `${idx * 0.05}s`,
             }}
             onClick={() => handleAtomClick(atom.id)}
             onDoubleClick={() => onRemoveAtom(atom.id)}
