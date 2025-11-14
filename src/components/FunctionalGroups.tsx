@@ -13,14 +13,15 @@ const functionalGroups = [
 
 export const FunctionalGroups = () => {
   return (
-    <Card className="p-4">
+    <Card className="p-4 animate-slide-in-left shadow-md hover:shadow-lg transition-all duration-300" style={{ animationDelay: "0.2s" }}>
       <h3 className="font-semibold mb-3">Functional Groups</h3>
       <div className="space-y-2">
-        {functionalGroups.map((group) => (
+        {functionalGroups.map((group, idx) => (
           <Button
             key={group.name}
             variant="outline"
-            className="w-full justify-start text-left h-auto py-3"
+            className="w-full justify-start text-left h-auto py-3 transition-all hover:scale-105 hover:shadow-sm animate-fade-in"
+            style={{ animationDelay: `${0.2 + idx * 0.1}s` }}
             onClick={() => toast.info(`${group.name}: ${group.description}`)}
           >
             <div className="flex flex-col items-start gap-1">
